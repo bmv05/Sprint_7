@@ -23,7 +23,8 @@ public class LoginCourierTest {
         client.createNewCourier(courier);
         CourierCredentials courierCredentials = CourierCredentials.from(courier);
         ValidatableResponse loginResponse = client.LoginCourier(courierCredentials);
-        courierId = check.assertSuccessfulLogin(loginResponse);
+        courierId = check.getCourierIdByResponse(loginResponse);
+        check.assertSuccessfulLogin(loginResponse);
         Assert.assertTrue(courierId != 0);
     }
 

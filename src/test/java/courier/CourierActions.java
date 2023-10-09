@@ -1,7 +1,6 @@
 package courier;
 
 import io.restassured.response.ValidatableResponse;
-
 import java.util.Map;
 
 public class CourierActions extends Spec {

@@ -1,9 +1,7 @@
 package courier;
 
 import io.restassured.response.ValidatableResponse;
-
 import java.net.HttpURLConnection;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
@@ -30,28 +28,31 @@ public class CourierAssertions {
     }
 
     public int assertSuccessfulLogin(ValidatableResponse loginResponse) {
-        int id = loginResponse
+        return loginResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_OK)
                 .extract()
                 .path("id");
-        return id;
     }
 
-    public int assertBadRequestLogin(ValidatableResponse loginResponse) {
+    public int getCourierIdByResponse(ValidatableResponse loginResponse) {
+        return loginResponse
+                .extract()
+                .path("id");
+    }
+
+    public void assertBadRequestLogin(ValidatableResponse loginResponse) {
         loginResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_BAD_REQUEST)
                 .body("message", equalTo("Недостаточно данных для входа"));
-        return 0;
     }
 
-    public int assertNotFoundLogin(ValidatableResponse loginResponse) {
+    public void assertNotFoundLogin(ValidatableResponse loginResponse) {
         loginResponse
                 .assertThat()
                 .statusCode(HttpURLConnection.HTTP_NOT_FOUND)
                 .body("message", equalTo("Учетная запись не найдена"));
-        return 0;
     }
 
     public void successfulDelete(ValidatableResponse response) {
