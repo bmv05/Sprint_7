@@ -3,6 +3,7 @@ import order.OrderAssertions;
 import order.OrderOut;
 import order.OrderAction;
 import order.OrdersIn;
+import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -67,7 +68,7 @@ public class ListOrderTest {
         OrdersIn orders = response
                 .body()
                 .as(OrdersIn.class);
-        assertEquals(true, orders.getOrders().get(0).getId() > 0);
+        Assert.assertTrue(String.valueOf(true), orders.getOrders().get(0).getId() > 0);
         check.assertSuccessfulGetListOrders(response.then());
     }
 }
