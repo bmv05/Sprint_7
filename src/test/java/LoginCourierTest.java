@@ -1,6 +1,7 @@
 import courier.*;
 import io.restassured.response.ValidatableResponse;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class LoginCourierTest {
@@ -23,7 +24,7 @@ public class LoginCourierTest {
         CourierCredentials courierCredentials = CourierCredentials.from(courier);
         ValidatableResponse loginResponse = client.LoginCourier(courierCredentials);
         courierId = check.assertSuccessfulLogin(loginResponse);
-        assert courierId != 0;
+        Assert.assertTrue(courierId != 0);
     }
 
     @Test // курьер не может авторизоваться (нет логина)
