@@ -16,7 +16,7 @@ public class CreateOrderTest {
         this.orderOut = new OrderOut(firstName, lastName, address, metroStation, phone, rentTime, deliveryDate, comment, color);
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Создание заказа. Тестовые данные: {0} {1}")
     public static Object[][] getTestData() {
         return new Object[][]{
                 {
@@ -43,7 +43,7 @@ public class CreateOrderTest {
                 },
                 {
                         "Нина",
-                        "Клубника",
+                        "Арбуз",
                         "Ворошилова, д.33",
                         "Автово",
                         "89323454334",
